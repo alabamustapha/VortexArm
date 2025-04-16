@@ -36,5 +36,11 @@ class Operator:
             arrays = np.concatenate((boxes, conf[:, None], label[:, None]), axis=1)
 
             send_output("bbox", pa.array(arrays.ravel()), dora_event["metadata"])
-
+        # log error to console
+        if dora_event["type"] == "ERROR":
+            print(dora_event["value"])
+        
         return DoraStatus.CONTINUE
+    
+        
+    
